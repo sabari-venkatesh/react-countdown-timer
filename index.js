@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Countdown from './Countdown';
-import './style.css';
+
 
 class App extends Component {
   constructor() {

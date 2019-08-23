@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './style.scss';
 
-const CountDown = ({ minutes = 0, seconds = 0 }) => {
+const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   const [paused, setPaused] = React.useState(false);
   const [over, setOver] = React.useState(false);
   const [time, setTime] = useState({
@@ -42,12 +43,20 @@ const CountDown = ({ minutes = 0, seconds = 0 }) => {
   });
 
   return (
-    <>
-      <p>{`${time.minutes.toString().padStart(2, '0')} : ${time.seconds.toString().padStart(2, '0')}`}</p>
-      <p>{over ? "Time's up!" : 'Timer Running'}</p>
-      {!over && <button onClick={() => setPaused(!paused)}>{paused ? 'Resume' : 'Pause'}</button>}
-      <button onClick={() => reset()}>Restart</button>
-    </>
+    <div className="timer">
+      <div className="timer__header">
+        <span>Minutes</span>
+        <span>Seconds</span>
+      </div>
+      <div className="timer__time">
+        <span className="time__minutes">{time.minutes.toString().padStart(2, '0')}</span>
+        <span className="time__seconds">{time.seconds.toString().padStart(2, '0')}</span>
+      </div>
+      <p class="timer__status">{over ? "Time's up!" : 'Timer Running'}</p>
+
+      {!over && <button className="timer__button" onClick={() => setPaused(!paused)}>{paused ? 'Resume' : 'Pause'}</button>}
+      <button className="timer__button" onClick={() => reset()}>Restart</button>
+    </div>
   )
 }
 
